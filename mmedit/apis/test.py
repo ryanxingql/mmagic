@@ -13,6 +13,7 @@ from mmcv.runner import get_dist_info
 def single_gpu_test(model,
                     data_loader,
                     save_image=False,
+                    save_float32=False,
                     save_path=None,
                     iteration=None):
     """Test model with a single gpu.
@@ -23,6 +24,7 @@ def single_gpu_test(model,
         model (nn.Module): Model to be tested.
         data_loader (nn.Dataloader): Pytorch data loader.
         save_image (bool): Whether save image. Default: False.
+        save_float32 (bool): Whether save float32. Default: False.
         save_path (str): The path to save image. Default: None.
         iteration (int): Iteration number. It is used for the save image name.
             Default: None.
@@ -43,6 +45,7 @@ def single_gpu_test(model,
             result = model(
                 test_mode=True,
                 save_image=save_image,
+                save_float32=save_float32,
                 save_path=save_path,
                 iteration=iteration,
                 **data)
@@ -63,6 +66,7 @@ def multi_gpu_test(model,
                    tmpdir=None,
                    gpu_collect=False,
                    save_image=False,
+                   save_float32=False,
                    save_path=None,
                    iteration=None,
                    empty_cache=False):
@@ -81,6 +85,7 @@ def multi_gpu_test(model,
             different gpus under cpu mode.
         gpu_collect (bool): Option to use either gpu or cpu to collect results.
         save_image (bool): Whether save image. Default: False.
+        save_float32 (bool): Whether save float32. Default: False.
         save_path (str): The path to save image. Default: None.
         iteration (int): Iteration number. It is used for the save image name.
             Default: None.
@@ -104,6 +109,7 @@ def multi_gpu_test(model,
             result = model(
                 test_mode=True,
                 save_image=save_image,
+                save_float32=save_float32,
                 save_path=save_path,
                 iteration=iteration,
                 **data)
